@@ -1,0 +1,80 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.card {
+    border-radius: 0.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+.text-primary {
+    color: #1a73e8 !important;
+}
+
+.bg-primary {
+    background-color: #1a73e8 !important;
+}
+
+.btn-primary {
+    background-color: #1a73e8;
+    border-color: #1a73e8;
+}
+
+.btn-primary:hover {
+    background-color: #0d64d2;
+    border-color: #0d64d2;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.badge {
+    padding: 0.35em 0.65em;
+    font-size: 0.75em;
+    font-weight: 500;
+    border-radius: 0.25rem;
+}
+
+.bg-success {
+    background-color: #34a853 !important;
+}
+
+/* Đảm bảo các icon được căn chỉnh đúng */
+.fas {
+    width: 16px;
+    text-align: center;
+    margin-right: 0.5rem;
+}
+
+/* Giúp văn bản "Chưa có thông tin" hiển thị mờ hơn */
+.text-muted {
+    color: #6c757d !important;
+}
+
+/* Đảm bảo footer luôn ở dưới cùng */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
+}

@@ -1,0 +1,202 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Các thông báo lỗi LDAP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            display: block;
+            padding-top: 56px;
+            height: auto;
+        }
+        .error-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+        .error-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .error-header {
+            background-color: #1a73e8;
+            color: white;
+            padding: 20px;
+        }
+        .error-body {
+            padding: 25px;
+        }
+        .error-table {
+            margin-top: 20px;
+        }
+        .error-message {
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-id-card me-2"></i>LDAP Auth Demo
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">
+                            <i class="fas fa-sign-in-alt me-1"></i>Đăng nhập
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="error-container">
+        <div class="error-card">
+            <div class="error-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-exclamation-triangle me-2"></i>Tổng hợp các thông báo lỗi từ LDAP
+                </h5>
+            </div>
+            <div class="error-body">
+                <p class="mb-4">
+                    Đây là danh sách các thông báo lỗi có thể gặp phải khi đăng nhập qua LDAP.
+                    Bạn có thể mô phỏng các lỗi này trong trang đăng nhập để kiểm tra cách hiển thị.
+                </p>
+                
+                <div class="table-responsive error-table">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th style="width: 20%">Mã lỗi</th>
+                                <th style="width: 40%">Thông báo</th>
+                                <th style="width: 40%">Mô tả</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>INVALID_CREDENTIALS</code></td>
+                                <td>
+                                    <div class="alert-danger error-message">
+                                        <i class="fas fa-times-circle me-2"></i>Tên đăng nhập hoặc mật khẩu không đúng.
+                                    </div>
+                                </td>
+                                <td>Thông tin đăng nhập không chính xác.</td>
+                            </tr>
+                            <tr>
+                                <td><code>ACCOUNT_EXPIRED</code></td>
+                                <td>
+                                    <div class="alert-danger error-message">
+                                        <i class="fas fa-calendar-times me-2"></i>Tài khoản của bạn đã hết hạn. Vui lòng liên hệ quản trị viên.
+                                    </div>
+                                </td>
+                                <td>Tài khoản người dùng đã hết hạn sử dụng.</td>
+                            </tr>
+                            <tr>
+                                <td><code>CONSTRAINT_VIOLATION</code></td>
+                                <td>
+                                    <div class="alert-danger error-message">
+                                        <i class="fas fa-exclamation-circle me-2"></i>Mật khẩu của bạn vi phạm chính sách mật khẩu.
+                                    </div>
+                                </td>
+                                <td>Mật khẩu không đáp ứng yêu cầu về độ phức tạp.</td>
+                            </tr>
+                            <tr>
+                                <td><code>PASSWORD_EXPIRED</code></td>
+                                <td>
+                                    <div class="alert-warning error-message">
+                                        <i class="fas fa-key me-2"></i>Mật khẩu của bạn đã hết hạn. Vui lòng đổi mật khẩu mới.
+                                    </div>
+                                </td>
+                                <td>Mật khẩu đã quá thời gian sử dụng và cần phải thay đổi.</td>
+                            </tr>
+                            <tr>
+                                <td><code>ACCOUNT_LOCKED</code></td>
+                                <td>
+                                    <div class="alert-danger error-message">
+                                        <i class="fas fa-lock me-2"></i>Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị viên.
+                                    </div>
+                                </td>
+                                <td>Tài khoản bị khóa do đăng nhập sai nhiều lần.</td>
+                            </tr>
+                            <tr>
+                                <td><code>SERVER_DOWN</code></td>
+                                <td>
+                                    <div class="alert-danger error-message">
+                                        <i class="fas fa-server me-2"></i>Không thể kết nối đến máy chủ LDAP. Vui lòng thử lại sau.
+                                    </div>
+                                </td>
+                                <td>Máy chủ LDAP không thể truy cập được.</td>
+                            </tr>
+                            <tr>
+                                <td><code>TIMEOUT</code></td>
+                                <td>
+                                    <div class="alert-warning error-message">
+                                        <i class="fas fa-clock me-2"></i>Kết nối đến máy chủ LDAP bị hết thời gian chờ. Vui lòng thử lại sau.
+                                    </div>
+                                </td>
+                                <td>Quá trình kết nối tới LDAP quá lâu và bị ngắt.</td>
+                            </tr>
+                            <tr>
+                                <td><code>UNAVAILABLE</code></td>
+                                <td>
+                                    <div class="alert-danger error-message">
+                                        <i class="fas fa-power-off me-2"></i>Dịch vụ LDAP không khả dụng. Vui lòng thử lại sau.
+                                    </div>
+                                </td>
+                                <td>Dịch vụ LDAP tạm thời không hoạt động.</td>
+                            </tr>
+                            <tr>
+                                <td><code>USER_NOT_FOUND</code></td>
+                                <td>
+                                    <div class="alert-danger error-message">
+                                        <i class="fas fa-user-slash me-2"></i>Không tìm thấy tài khoản trong hệ thống.
+                                    </div>
+                                </td>
+                                <td>Tài khoản không tồn tại trong LDAP.</td>
+                            </tr>
+                            <tr>
+                                <td><code>ACCESS_DENIED</code></td>
+                                <td>
+                                    <div class="alert-danger error-message">
+                                        <i class="fas fa-ban me-2"></i>Tài khoản không có quyền truy cập ứng dụng này.
+                                    </div>
+                                </td>
+                                <td>Tài khoản không thuộc nhóm được phép truy cập.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="mt-4 text-center">
+                    <a href="{% url 'login' %}" class="btn btn-primary">
+                        <i class="fas fa-arrow-left me-2"></i>Quay lại trang đăng nhập
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <div class="container">
+            <p class="mb-0">LDAP Authentication Demo &copy; {% now "Y" %}</p>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
