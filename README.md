@@ -5,7 +5,7 @@ Dự án demo đăng nhập LDAP sử dụng Django và ldap3, cho phép kiểm 
 - Tài khoản hết hạn
 - Lỗi hệ thống LDAP
 
-![Demo giao diện kiểm tra lỗi LDAP](LDAP_Check.png)
+![Demo giao diện kiểm tra lỗi LDAP](images/LDAP_Check.png)
 
 ## Yêu cầu hệ thống
 
