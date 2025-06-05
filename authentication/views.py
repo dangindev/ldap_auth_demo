@@ -75,7 +75,7 @@ def login_view(request):
                     
                     # Tìm kiếm người dùng trong LDAP
                     search_filter = f"(sAMAccountName={username})"
-                    base_dn = "OU=USERS,OU=HO,OU=HANOI,DC=ttgroup,DC=com,DC=vn"
+                    base_dn = "BASE_DN_INSERT_HERE"
                     attrs = ['employeeID', 'title', 'mobile', 'manager', 'department', 'mail', 'givenName', 'sn']
                     
                     results = conn.search_s(base_dn, ldap.SCOPE_SUBTREE, search_filter, attrs)
